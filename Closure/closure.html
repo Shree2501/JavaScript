@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    <button id="orange">Orange</button>
+    <button id="lighblue">Blue</button>
+</body>
+<script>
+    function outer(){
+        let username = "John Doe";
+        // console.log(secret); // This would cause an error
+        function inner(){
+            let secret = "I love JavaScript!";
+            console.log("Hello, " + username);
+        }
+        function inner2(){
+            console.log("Goodbye, " + username);
+            // console.log(secret); // This would cause an error
+        }
+        inner()
+        inner2()
+    }
+    outer();
+
+    function makefunc(){
+        let username = "Jane Smith";
+        function displayUsername(){
+            console.log("User: " + username);
+        }
+        return displayUsername;
+    }
+    let func = makefunc();
+    func();
+</script>
+<script>
+    function clickHandler(color){
+        return function(){
+            document.body.style.backgroundColor = `${color}`;
+        }
+    }
+    document.getElementById("orange").onclick = clickHandler("orange");
+    document.getElementById("lighblue").onclick = clickHandler("lightblue");
+</script>
+</html>
